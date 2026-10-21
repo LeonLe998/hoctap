@@ -1,0 +1,6 @@
+{
+  "name": "CareerSprint - 12-Tuần Tăng Tốc",
+  "description": "Hệ thống định hướng hành động 12 tuần tập trung cho 3 trụ cột: Nghiệp vụ Nhân sự FDI, Tiếng Trung HSK & Tiếng Anh công sở.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

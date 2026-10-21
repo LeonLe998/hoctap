@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@layer base {
+  html, body { margin: 0; padding: 0; }
+  body { overscroll-behavior: none; }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+}
+::-webkit-scrollbar { display: none; }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-error-container": "#93000a",
+        "on-tertiary-fixed-variant": "#005137",
+        "outline": "#737686",
+        "secondary-fixed-dim": "#ffb77d",
+        "inverse-on-surface": "#eef0ff",
+        "surface-variant": "#dae2fd",
+        "primary": "#004ac6",
+        "outline-variant": "#c3c6d7",
+        "on-surface-variant": "#434655",
+        "on-primary": "#ffffff",
+        "error-container": "#ffdad6",
+        "surface-dim": "#d2d9f4",
+        "inverse-primary": "#b4c5ff",
+        "surface-bright": "#faf8ff",
+        "primary-fixed-dim": "#b4c5ff",
+        "on-error": "#ffffff",
+        "tertiary-fixed-dim": "#68dba9",
+        "surface": "#faf8ff",
+        "on-tertiary": "#ffffff",
+        "tertiary-fixed": "#85f8c4",
+        "on-primary-fixed": "#00174b",
+        "on-secondary-fixed-variant": "#6e3900",
+        "on-surface": "#131b2e",
+        "secondary-container": "#fe932c",
+        "surface-container": "#eaedff",
+        "primary-container": "#2563eb",
+        "background": "#faf8ff",
+        "on-background": "#131b2e",
+        "on-secondary": "#ffffff",
+        "inverse-surface": "#283044",
+        "tertiary": "#006243",
+        "secondary": "#904d00",
+        "on-tertiary-container": "#bdffdc",
+        "on-secondary-fixed": "#2f1500",
+        "on-secondary-container": "#663500",
+        "on-tertiary-fixed": "#002114",
+        "error": "#ba1a1a",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f2f3ff",
+        "tertiary-container": "#007d57",
+        "on-primary-container": "#eeefff",
+        "surface-container-high": "#e2e7ff",
+        "surface-container-highest": "#dae2fd",
+        "on-primary-fixed-variant": "#003ea8",
+        "primary-fixed": "#dbe1ff",
+        "surface-tint": "#0053db",
+        "secondary-fixed": "#ffdcc3"
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+      spacing: {
+        gutter: "1.25rem",
+        "space-sm": "0.5rem",
+        margin: "1rem",
+        "space-xs": "0.25rem",
+        "space-md": "0.75rem",
+        "margin-desktop": "2rem",
+        "gutter-desktop": "1.5rem",
+        "space-xl": "2rem",
+        "space-lg": "1.25rem"
+      },
+      fontFamily: {
+        "display-lg": ["Be Vietnam Pro"],
+        "label-xs": ["Be Vietnam Pro"],
+        "label-md": ["Be Vietnam Pro"],
+        "body-md": ["Be Vietnam Pro"],
+        "display-md": ["Be Vietnam Pro"],
+        "headline-md": ["Be Vietnam Pro"],
+        "label-lg": ["Be Vietnam Pro"],
+        "title-sm": ["Be Vietnam Pro"],
+        "headline-lg": ["Be Vietnam Pro"],
+        "body-lg": ["Be Vietnam Pro"],
+        "body-sm": ["Be Vietnam Pro"]
+      },
+      fontSize: {
+        "display-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.025em", fontWeight: "700" }],
+        "label-xs": ["10.5px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }],
+        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }],
+        "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }],
+        "display-md": ["26px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "600" }],
+        "headline-md": ["18px", { lineHeight: "26px", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "label-lg": ["13px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "600" }],
+        "title-sm": ["15px", { lineHeight: "22px", fontWeight: "600" }],
+        "headline-lg": ["22px", { lineHeight: "30px", letterSpacing: "-0.015em", fontWeight: "600" }],
+        "body-lg": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+        "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }]
+      }
+    }
+  }
+}
+</script>
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+<!-- Left Sidebar: Minimalist, clean and spacious with subtle border -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-surface-container-highest/60 z-50 flex flex-col">
+<!-- Logo / Brand Header -->
+<div class="h-16 px-space-lg flex items-center justify-between border-b border-surface-container-highest/40">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[17px] font-normal">space_dashboard</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface tracking-tight font-semibold">CareerSprint</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium tracking-wide">12-Tuần Tăng Tốc</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-label-xs font-semibold bg-surface-container-high text-on-surface-variant">v2.4</span>
+</div>
+<!-- Compact Progress Card -->
+<div class="px-space-md pt-space-md pb-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low/80 border border-surface-container-highest/40 flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs text-on-surface-variant font-medium">Chặng 1: Tuần 3/12</span>
+<span class="font-label-xs text-label-xs text-primary font-bold">25%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full w-1/4"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-xs text-outline">
+<span>Kế hoạch 84 ngày</span>
+<span class="text-tertiary font-medium">Đúng tiến độ</span>
+</div>
+</div>
+</div>
+<!-- Navigation List: Text-only links with uniform baseline color & clean categories -->
+<nav class="flex-1 px-space-sm py-space-xs space-y-1 overflow-y-auto" data-active-classes="bg-surface-container-high text-primary font-label-lg font-semibold rounded-lg">
+<div class="px-space-md pt-2 pb-1 font-label-xs text-label-xs text-outline uppercase tracking-wider font-semibold">Không gian làm việc</div>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard-tong-quan-lo-trinh-12-tuan" href="#">Tổng quan lộ trình</a>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="quan-ly-nhiem-vu-and-lich-trinh-hoc-tap" href="#">Quản lý nhiệm vụ</a>
+<div class="px-space-md pt-space-md pb-1 font-label-xs text-label-xs text-outline uppercase tracking-wider font-semibold">Lộ trình chuyên môn</div>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="lo-trinh-hcns-12-tuan-and-checklist-bai-tap-thuc-hanh" href="#">Nghiệp vụ HCNS 12 tuần</a>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="lo-trinh-tieng-trung-hsk-and-cong-so" href="#">Tiếng Trung HSK &amp; Công sở</a>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="lo-trinh-tieng-anh-toeic-and-giao-tiep-cong-so" href="#">Tiếng Anh TOEIC &amp; Phỏng vấn</a>
+<div class="px-space-md pt-space-md pb-1 font-label-xs text-label-xs text-outline uppercase tracking-wider font-semibold">Đo lường &amp; Hệ thống</div>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="nhat-ky-and-tong-ket-lo-trinh-daily-audit-and-weekly-review" href="#">Nhật ký &amp; Tổng kết tuần</a>
+<a class="flex items-center px-space-md py-2 rounded-lg text-on-surface-variant font-body-md text-body-md hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="cai-dat-and-sao-luu-du-lieu-settings-and-backup" href="#">Cài đặt &amp; Sao lưu dữ liệu</a>
+</nav>
+<!-- Bottom User Profile: Compact Minimalist -->
+<div class="p-space-sm border-t border-surface-container-highest/40 bg-surface-container-lowest m-space-xs rounded-lg">
+<div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md font-semibold shrink-0">
+<span>NA</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-lg text-label-lg text-on-surface truncate leading-tight">Nguyễn Văn A</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant truncate">Mục tiêu: HCNS Senior</span>
+</div>
+</div>
+<a class="text-outline hover:text-on-surface p-1 rounded transition-colors" data-path="cai-dat-and-sao-luu-du-lieu-settings-and-backup" href="#" title="Cài đặt">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Workspace Container -->
+<div class="pl-64 flex flex-col min-h-screen bg-surface">
+<!-- Header: Minimalist, clean, airy with light borders and high usability -->
+<header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-md border-b border-surface-container-highest/60 z-40 px-space-lg flex items-center justify-between">
+<!-- Left: Sprint mini progress indicator -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container-low border border-surface-container-highest/50">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-xs text-label-xs text-on-surface font-semibold">Sprint Tuần 3 / 12</span>
+<span class="text-outline text-xs">|</span>
+<div class="w-16 bg-surface-container-high h-1.5 rounded-full overflow-hidden hidden sm:block">
+<div class="bg-primary-container h-full rounded-full w-1/4"></div>
+</div>
+<span class="font-label-xs text-label-xs text-primary font-bold">25%</span>
+</div>
+</div>
+<!-- Right: Study mode switcher, quick action, user profile -->
+<div class="flex items-center gap-space-md">
+<!-- Mode Switcher Pill -->
+<div class="inline-flex items-center p-0.5 rounded-full bg-surface-container-low border border-surface-container-highest/50">
+<button class="px-space-sm py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-xs font-label-xs text-label-xs font-semibold flex items-center gap-1 transition-all" type="button">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Tiêu chuẩn (3h)</span>
+</button>
+<button class="px-space-sm py-1 rounded-full text-on-surface-variant hover:text-on-surface font-label-xs text-label-xs font-medium transition-all" type="button">
+<span>Bận rộn (1h)</span>
+</button>
+</div>
+<div class="h-4 w-px bg-surface-container-highest"></div>
+<!-- Quick Add Task Button -->
+<button class="h-8 px-space-md rounded-lg bg-primary-container text-on-primary hover:opacity-95 transition-all font-label-md text-label-md font-medium flex items-center gap-1 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Thêm việc</span>
+</button>
+<!-- Quick Reflection Note -->
+<button class="h-8 w-8 rounded-lg border border-surface-container-highest/60 bg-surface-container-lowest text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low flex items-center justify-center transition-colors" title="Viết phản tư nhanh" type="button">
+<span class="material-symbols-outlined text-[17px]">edit_square</span>
+</button>
+<!-- Minimal User Avatar -->
+<div class="flex items-center gap-2 pl-space-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-surface-container-highest text-on-surface flex items-center justify-center font-label-xs font-semibold">
+<span>NA</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Viewport with strict pt-16 buffer -->
+<main class="relative pt-16 bg-surface flex-1 w-full px-space-lg py-space-lg">
+<div class="flex flex-col w-full">
+<!-- Top Progress Bar & Header Banner -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-lg mb-space-lg relative overflow-hidden">
+<div class="absolute -right-16 -top-16 w-56 h-56 bg-primary-fixed/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col gap-1 z-10">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-label-xs text-label-xs font-semibold">Chuyên sâu HCNS Thực chiến</span>
+<span class="px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-xs text-label-xs font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+          Đang đúng tiến độ
+        </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface font-semibold tracking-tight">Lộ trình Nghiệp vụ HCNS 12 Tuần &amp; Checklist Thực hành</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Chương trình huấn luyện mô phỏng tình huống thực tế tại doanh nghiệp FDI. Trọng tâm tuần này: Thủ tục kỷ luật lao động &amp; Phòng ngừa rủi ro tranh chấp.
+      </p>
+</div>
+<!-- Progress Metric Capsule -->
+<div class="bg-surface-container-low rounded-xl p-space-md z-10 min-w-[280px] shadow-xs flex flex-col gap-2">
+<div class="flex justify-between items-baseline">
+<span class="font-label-md text-label-md text-on-surface-variant">Tiến độ bài thực chiến</span>
+<div class="flex items-baseline gap-1">
+<span class="font-display-md text-display-md text-primary font-bold">9</span>
+<span class="font-title-sm text-title-sm text-outline">/ 24 bài</span>
+</div>
+</div>
+<!-- Dual Segment Progress Bar -->
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden flex">
+<div class="bg-primary h-full transition-all duration-500" style="width: 37.5%;"></div>
+</div>
+<div class="flex items-center justify-between font-label-xs text-label-xs text-on-surface-variant">
+<span>Đạt 37.5% tổng khối lượng</span>
+<span class="text-primary font-semibold">Sprint Tuần 3 / 12</span>
+</div>
+</div>
+</section>
+<!-- 2-Column Responsive Workspace Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: 12-Week Interactive Accordions (8 Cols) -->
+<section class="lg:col-span-8 flex flex-col gap-space-md">
+<!-- Filter & Quick Action Strip -->
+<div class="flex items-center justify-between px-space-xs py-1">
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-primary">view_agenda</span>
+<span class="font-semibold text-on-surface">Cấu trúc 12 Tuần</span>
+<span class="text-outline">|</span>
+<span class="text-on-surface-variant">4 Modul Chuyên môn</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 rounded bg-surface-container text-on-surface-variant hover:text-on-surface font-label-xs text-label-xs font-medium transition-colors flex items-center gap-1 shadow-xs" id="toggle-all-btn" onclick="toggleAllAccordions()">
+<span class="material-symbols-outlined text-[15px]">unfold_less</span>
+<span>Thu gọn tất cả</span>
+</button>
+</div>
+</div>
+<!-- MODULE 1: Pháp lý & Định biên tiền lương (Tuần 1 - 4) -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center gap-2 px-space-xs pt-space-xs">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider text-outline">Modul I: Pháp lý Lao động, Tiền lương &amp; Tranh chấp (Tuần 1 - 4)</span>
+</div>
+<!-- Accordion 1: Tuần 1 (Đã hoàn thành) -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-xs transition-all overflow-hidden" data-accordion="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Tuần 1: Khung Pháp lý Lao động &amp; Hợp đồng lao động</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-xs text-label-xs font-semibold">Đã nghiệm thu (3/3)</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline truncate">Phân tích rủi ro Điều khoản thử việc, HĐLĐ xác định thời hạn &amp; Thỏa thuận NDA/NCA</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-label-xs text-label-xs text-outline hidden sm:inline">Điểm TB: 9.2</span>
+<span class="material-symbols-outlined text-[20px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-space-md pt-0 bg-surface-container-lowest flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-on-surface">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">verified</span>
+<span class="font-body-sm text-body-sm font-medium">HĐLĐ chuẩn song ngữ Anh - Việt &amp; Biên bản nghiệm thu thử việc</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs text-tertiary font-semibold">Điểm 9.4</span>
+<a class="font-label-xs text-label-xs text-primary hover:underline flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[14px]">visibility</span> Xem lại
+                </a>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-on-surface">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">verified</span>
+<span class="font-body-sm text-body-sm font-medium">Bản cam kết bảo mật thông tin kinh doanh (NDA/NCA) cho cấp Quản lý</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs text-tertiary font-semibold">Điểm 9.0</span>
+<a class="font-label-xs text-label-xs text-primary hover:underline flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[14px]">visibility</span> Xem lại
+                </a>
+</div>
+</div>
+</div>
+</details>
+<!-- Accordion 2: Tuần 2 (Đã hoàn thành) -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-xs transition-all overflow-hidden" data-accordion="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Tuần 2: Xây dựng Thang bảng lương &amp; Quy chế Lương thưởng</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-xs text-label-xs font-semibold">Đã nghiệm thu (3/3)</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline truncate">Mô hình 3P (Position, Person, Performance), quy chế phụ cấp và phương pháp phân bậc lương</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="font-label-xs text-label-xs text-outline hidden sm:inline">Điểm TB: 9.6</span>
+<span class="material-symbols-outlined text-[20px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-space-md pt-0 bg-surface-container-lowest flex flex-col gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-on-surface">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">description</span>
+<span class="font-body-sm text-body-sm font-medium">Bảng cấu trúc lương 3P &amp; Quy chuẩn hệ số chức danh nhà máy sản xuất</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs text-tertiary font-semibold">Điểm 9.8</span>
+<a class="font-label-xs text-label-xs text-primary hover:underline flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[14px]">download</span> Tải bài nộp
+                </a>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-on-surface">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary">description</span>
+<span class="font-body-sm text-body-sm font-medium">Quy chế thưởng KPI quý và chính sách phụ cấp độc hại, thâm niên</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-xs text-label-xs text-tertiary font-semibold">Điểm 9.4</span>
+<a class="font-label-xs text-label-xs text-primary hover:underline flex items-center gap-0.5" href="#">
+<span class="material-symbols-outlined text-[14px]">download</span> Tải bài nộp
+                </a>
+</div>
+</div>
+</div>
+</details>
+<!-- Accordion 3: Tuần 3 [TRỌNG TÂM HIỆN TẠI - OPEN BY DEFAULT] -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-md transition-all overflow-hidden" data-accordion="" id="active-sprint-week" open="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-high/40 hover:bg-surface-container-high/60 transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-xs">
+<span class="material-symbols-outlined text-[17px]">flag</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-bold text-on-surface">Tuần 3: Quản trị Quan hệ lao động &amp; Xử lý Kỷ luật</span>
+<span class="px-2 py-0.5 rounded-full bg-primary text-on-primary font-label-xs text-label-xs font-semibold animate-pulse">Trọng tâm hiện tại</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs font-semibold">Hoàn thành 1/3 bài</span>
+</div>
+<span class="font-body-sm text-body-sm text-primary font-medium truncate">Thực thi Điều 122 BLLĐ 2019, giải quyết tranh chấp sa thải &amp; bồi thường trợ cấp</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[20px] text-primary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<!-- Focus Checklist Container -->
+<div class="p-space-lg bg-surface-container-lowest flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-label-xs text-label-xs font-semibold text-outline uppercase tracking-wider">Danh mục bài tập thực hành tuần này</span>
+<span class="font-label-xs text-label-xs text-error font-medium">Hạn chót sprint: 23:59 Chủ Nhật</span>
+</div>
+<!-- Task 3.1: Đã hoàn thành -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-xs transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[15px]">done</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold">Bài 3.1: Soạn thảo Biên bản xử lý vi phạm kỷ luật lao động mẫu</span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-xs text-label-xs font-semibold">Hoàn thành • Điểm 9.5</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Đảm bảo đủ 4 bước luật định theo Điều 122 BLLĐ: Mời công đoàn, lập thông báo trước 3 ngày, ghi nhận biên bản đối chất.
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="h-8 px-3 rounded-lg bg-surface-container text-on-surface font-label-xs text-label-xs font-medium hover:bg-surface-container-high transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[15px] text-tertiary">task_alt</span>
+<span>Đã duyệt</span>
+</button>
+</div>
+</div>
+<!-- Task 3.2: Đang thực hiện - ACTIVE -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-md flex flex-col md:flex-row md:items-center justify-between gap-space-md transition-all">
+<div class="flex items-start gap-space-md">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[15px]">pending</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm text-on-surface font-bold">Bài 3.2: Xây dựng Case study sa thải lao động trái luật &amp; bồi thường</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-xs text-label-xs font-bold animate-pulse">Đang làm • Hạn: 23:00 Hôm nay</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Tình huống nhân viên kinh doanh làm lộ bí mật khách hàng sang đối thủ cạnh tranh. Lập hồ sơ bằng chứng và lập phương án giải quyết hòa giải/tòa án.
+                  </p>
+<div class="flex items-center gap-space-md mt-2">
+<span class="font-label-xs text-label-xs text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">attach_file</span> Đã đính kèm 2/3 tệp nháp
+                    </span>
+<span class="font-label-xs text-label-xs text-primary font-medium">Tiến độ nháp: 70%</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="h-9 px-4 rounded-lg bg-primary text-on-primary hover:opacity-95 font-label-md text-label-md font-medium transition-all shadow-xs flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span>Nộp bài ngay</span>
+</button>
+</div>
+</div>
+<!-- Task 3.3: Chờ nghiệm thu -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-xs">
+<div class="flex items-start gap-space-md">
+<div class="mt-0.5 w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold">Bài 3.3: Lập file Excel tính toán trợ cấp thôi việc &amp; mất việc làm</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-xs text-label-xs font-semibold">Chờ nghiệm thu</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    Tách bạch thời gian đóng BHTN và thời gian doanh nghiệp phải chi trả trực tiếp theo Nghị định 145/2020/NĐ-CP.
+                  </p>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center shrink-0">
+<button class="h-8 px-3 rounded-lg bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-medium hover:bg-surface-container-high transition-colors flex items-center gap-1 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[15px]">edit</span>
+<span>Cập nhật file</span>
+</button>
+</div>
+</div>
+</div>
+</details>
+<!-- Accordion 4: Tuần 4 (Sắp diễn ra) -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-xs transition-all overflow-hidden opacity-95" data-accordion="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-surface-container text-outline flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Tuần 4: Bảo hiểm Xã hội, BHYT &amp; Quyết toán Thuế TNCN Nâng cao</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-medium">Dự kiến mở: Thứ Hai tới</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline truncate">Phần mềm BHXH điện tử, quy trình xử lý thai sản/ốm đau và giảm trừ gia cảnh thuế TNCN</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[20px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-space-md pt-0 bg-surface-container-lowest flex flex-col gap-2">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Bài 4.1: Xử lý hồ sơ hưởng chế độ thai sản và đối soát C70a-HD</span>
+<span class="font-label-xs text-label-xs text-outline">Khóa</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<span>Bài 4.2: Lập bảng quyết toán thuế TNCN cuối năm cho người lao động có 2 nguồn thu nhập</span>
+<span class="font-label-xs text-label-xs text-outline">Khóa</span>
+</div>
+</div>
+</details>
+</div>
+<!-- MODULE 2: Tuần 5 - 8 (Accordion thu gọn) -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2 px-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider text-outline">Modul II: Thu hút Nhân tài &amp; Quản trị Hiệu suất (Tuần 5 - 8)</span>
+</div>
+<details class="group bg-surface-container-lowest rounded-xl shadow-xs transition-all overflow-hidden" data-accordion="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">groups</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Tuần 5 - 8: Tuyển dụng Thực chiến, Onboarding &amp; Đánh giá KPI/OKR</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-medium">8 bài tập dự kiến</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline truncate">Sourcing ứng viên cấp cao, thiết kế bài phỏng vấn hành vi STAR &amp; xây tháp KPI phòng ban</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[20px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-space-md pt-0 bg-surface-container-lowest flex flex-col gap-2">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 5: Xây dựng Headcount Planning &amp; Kênh tuyển dụng Headhunter</span>
+<span class="font-label-xs text-label-xs text-outline">Xem trước nội dung</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 6: Kỹ thuật phỏng vấn sâu theo mô hình năng lực (Competency-based)</span>
+<span class="font-label-xs text-label-xs text-outline">Xem trước nội dung</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 7: Quy trình Onboarding 90 ngày &amp; Trải nghiệm nhân viên (EX)</span>
+<span class="font-label-xs text-label-xs text-outline">Xem trước nội dung</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 8: Xây dựng từ điển KPI vị trí Chuyên viên &amp; Tổ chức kỳ đánh giá 360</span>
+<span class="font-label-xs text-label-xs text-outline">Xem trước nội dung</span>
+</div>
+</div>
+</details>
+</div>
+<!-- MODULE 3: Tuần 9 - 12 (Accordion thu gọn) -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-center gap-2 px-space-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider text-outline">Modul III: Portfolio Chuyên gia &amp; Phỏng vấn FDI (Tuần 9 - 12)</span>
+</div>
+<details class="group bg-surface-container-lowest rounded-xl shadow-xs transition-all overflow-hidden" data-accordion="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-lowest hover:bg-surface-container-low transition-colors flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md min-w-0">
+<div class="w-7 h-7 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">folder_special</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Tuần 9 - 12: Đóng gói Bộ hồ sơ Năng lực Chuyên viên HCNS FDI &amp; Mock Interview</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-xs text-label-xs font-medium">Giai đoạn Về đích</span>
+</div>
+<span class="font-body-sm text-body-sm text-outline truncate">Đóng gói Portfolio dự án thực tế, CV chuẩn ATS, mô phỏng phỏng vấn tiếng Anh/Trung với HRD</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<span class="material-symbols-outlined text-[20px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</div>
+</summary>
+<div class="p-space-md pt-0 bg-surface-container-lowest flex flex-col gap-2">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 9: Chuẩn hóa Portfolio sản phẩm HCNS cá nhân (HR Dossier)</span>
+<span class="font-label-xs text-label-xs text-outline">Đang khóa</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 10: Xây dựng thương hiệu tuyển dụng cá nhân trên LinkedIn</span>
+<span class="font-label-xs text-label-xs text-outline">Đang khóa</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 11: Phỏng vấn thử vòng Nghiệp vụ chuyên sâu cùng HR Director</span>
+<span class="font-label-xs text-label-xs text-outline">Đang khóa</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center justify-between">
+<span class="font-body-sm text-body-sm font-medium text-on-surface">Tuần 12: Đàm phán mức lương bổng (Offer Negotiation) &amp; Kế hoạch 100 ngày đầu tiên</span>
+<span class="font-label-xs text-label-xs text-outline">Đang khóa</span>
+</div>
+</div>
+</details>
+</div>
+</section>
+<!-- RIGHT COLUMN: Mentor Directives & Reference Library (4 Cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-space-md sticky top-20">
+<!-- Mentor Guidance Card (Collapsible) -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden" open="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]">tips_and_updates</span>
+</div>
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Lưu ý Mentor Tuần 3</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container-lowest flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm pb-1">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center font-label-md font-bold text-primary">
+              HT
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Mentor Hoàng Tuấn</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant">HR Director - Goertek Vina</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant bg-surface-container-low p-space-sm rounded-lg">
+            “Trong biên bản kỷ luật theo Điều 122, lỗi lớn nhất của các bạn mới là không gửi thông báo trước 3 ngày làm việc bằng văn bản có xác nhận ký nhận. Với bài 3.2, hãy bám sát án lệ số 54 về tranh chấp kỷ luật sa thải nhé.”
+          </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-label-xs text-label-xs text-outline">Phản hồi gần nhất: 2 giờ trước</span>
+<button class="font-label-xs text-label-xs text-primary font-semibold hover:underline flex items-center gap-0.5" type="button">
+<span class="material-symbols-outlined text-[14px]">chat</span> Đặt câu hỏi
+            </button>
+</div>
+</div>
+</details>
+<!-- Attached Legal Templates Card (Collapsible) -->
+<details class="group bg-surface-container-lowest rounded-xl shadow-sm transition-all overflow-hidden" open="">
+<summary class="list-none cursor-pointer p-space-md select-none bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-6 h-6 rounded-md bg-tertiary text-on-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]">folder_open</span>
+</div>
+<span class="font-title-sm text-title-sm font-semibold text-on-surface">Biểu mẫu đính kèm (Tuần 3)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="p-space-md bg-surface-container-lowest flex flex-col gap-2">
+<!-- Document 1 -->
+<a class="p-2.5 rounded-lg hover:bg-surface-container-low transition-colors flex items-center justify-between group/doc" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-[20px] text-primary">description</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-medium truncate group-hover/doc:text-primary transition-colors">BM-01_Bien-ban-hop-xu-ly-ky-luat.docx</span>
+<span class="font-label-xs text-label-xs text-outline">Chuẩn NĐ 145 • 45 KB</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover/doc:text-primary transition-colors">download</span>
+</a>
+<!-- Document 2 -->
+<a class="p-2.5 rounded-lg hover:bg-surface-container-low transition-colors flex items-center justify-between group/doc" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-[20px] text-tertiary">table_chart</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-medium truncate group-hover/doc:text-tertiary transition-colors">BM-02_Bang-tinh-tro-cap-thoi-viec.xlsx</span>
+<span class="font-label-xs text-label-xs text-outline">Tích hợp sẵn công thức • 118 KB</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover/doc:text-tertiary transition-colors">download</span>
+</a>
+<!-- Document 3 -->
+<a class="p-2.5 rounded-lg hover:bg-surface-container-low transition-colors flex items-center justify-between group/doc" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-[20px] text-secondary">menu_book</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-medium truncate group-hover/doc:text-secondary transition-colors">Checklist_Rui-ro-phap-ly-sa-thai.pdf</span>
+<span class="font-label-xs text-label-xs text-outline">Tài liệu nội bộ • 890 KB</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline group-hover/doc:text-secondary transition-colors">visibility</span>
+</a>
+<div class="pt-2">
+<button class="w-full py-2 rounded-lg bg-surface-container text-on-surface font-label-xs text-label-xs font-semibold hover:bg-surface-container-high transition-colors flex items-center justify-center gap-1 shadow-xs" type="button">
+<span class="material-symbols-outlined text-[15px]">folder_zip</span>
+<span>Tải trọn bộ 3 biểu mẫu (.zip)</span>
+</button>
+</div>
+</div>
+</details>
+<!-- Sprint Metrics Summary Pill -->
+<div class="p-space-md rounded-xl bg-surface-container-low shadow-xs flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-xs text-label-xs font-semibold text-outline uppercase tracking-wider">Tiến độ Sprint Tuần 3</span>
+<span class="font-label-xs text-label-xs font-bold text-primary">33%</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full w-1/3"></div>
+</div>
+<div class="flex items-center justify-between text-[11px] font-label-xs text-on-surface-variant">
+<span>Còn 2 bài tập cần nộp</span>
+<a class="text-primary font-medium hover:underline" href="#active-sprint-week">Xem bài cần nộp</a>
+</div>
+</div>
+</aside>
+</div>
+</div>
+<script>
+  // Simple interaction for Toggle All Accordions
+  let isAllExpanded = false;
+  function toggleAllAccordions() {
+    const accordions = document.querySelectorAll('details[data-accordion]');
+    const btn = document.getElementById('toggle-all-btn');
+    isAllExpanded = !isAllExpanded;
+    
+    accordions.forEach(acc => {
+      acc.open = isAllExpanded;
+    });
+
+    if (btn) {
+      btn.innerHTML = isAllExpanded 
+        ? '<span class="material-symbols-outlined text-[15px]">unfold_less</span><span>Thu gọn tất cả</span>' 
+        : '<span class="material-symbols-outlined text-[15px]">unfold_more</span><span>Mở rộng tất cả</span>';
+    }
+  }
+</script>
+</main>
+</div>
+</body></html>
